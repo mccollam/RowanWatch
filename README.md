@@ -1,4 +1,14 @@
-# [InfiniTime](https://github.com/InfiniTimeOrg/InfiniTime)
+# Unhealthy InfiniTime Fork
+Upstream: [InfiniTime](https://github.com/InfiniTimeOrg/InfiniTime)
+
+This fork removes or hides any "health" related apps from Infinitime (currently step counting and heartrate).
+
+These are generally just hidden to avoid breaking anything that depends on the hardware existing/working.  Apps are removed, watch face widgets are hidden.
+
+In the future if/when InfiniTime is more modular, it will make more sense to remove the functionality or stub it out to return 0 whenever called but
+this is a quick solution in the meantime.
+
+Original README follows.
 
 [![Build PineTime Firmware](https://github.com/InfiniTimeOrg/InfiniTime/workflows/Build%20PineTime%20Firmware/badge.svg?branch=master)](https://github.com/InfiniTimeOrg/InfiniTime/actions)
 
