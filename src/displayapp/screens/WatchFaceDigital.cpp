@@ -68,7 +68,7 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
 
   stepIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(stepIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x00FFE7));
-  lv_label_set_text_static(stepIcon, Symbols::shoe);
+  lv_label_set_text_static(stepIcon, Symbols::none);
   lv_obj_align(stepIcon, stepValue, LV_ALIGN_OUT_LEFT_MID, -5, 0);
 
   taskRefresh = lv_task_create(RefreshTaskCallback, LV_DISP_DEF_REFR_PERIOD, LV_TASK_PRIO_MID, this);
@@ -156,23 +156,23 @@ void WatchFaceDigital::Refresh() {
   heartbeat = heartRateController.HeartRate();
   heartbeatRunning = heartRateController.State() != Controllers::HeartRateController::States::Stopped;
   if (heartbeat.IsUpdated() || heartbeatRunning.IsUpdated()) {
-    if (heartbeatRunning.Get()) {
-      lv_obj_set_style_local_text_color(heartbeatIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xCE1B1B));
-      lv_label_set_text_fmt(heartbeatValue, "%d", heartbeat.Get());
-    } else {
+    //if (heartbeatRunning.Get()) {
+    //  lv_obj_set_style_local_text_color(heartbeatIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xCE1B1B));
+    //  lv_label_set_text_fmt(heartbeatValue, "%d", heartbeat.Get());
+    //} else {
       lv_obj_set_style_local_text_color(heartbeatIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x1B1B1B));
       lv_label_set_text_static(heartbeatValue, "");
-    }
+    //}
 
     lv_obj_realign(heartbeatIcon);
     lv_obj_realign(heartbeatValue);
   }
 
-  stepCount = motionController.NbSteps();
+  //stepCount = motionController.NbSteps();
   motionSensorOk = motionController.IsSensorOk();
-  if (stepCount.IsUpdated() || motionSensorOk.IsUpdated()) {
-    lv_label_set_text_fmt(stepValue, "%lu", stepCount.Get());
-    lv_obj_realign(stepValue);
-    lv_obj_realign(stepIcon);
-  }
+  //if (stepCount.IsUpdated() || motionSensorOk.IsUpdated()) {
+    lv_label_set_text_fmt(stepValue, "", stepCount.Get());
+  //  lv_obj_realign(stepValue);
+  //  lv_obj_realign(stepIcon);
+  //}
 }

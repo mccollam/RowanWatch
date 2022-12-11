@@ -156,19 +156,21 @@ void WatchFaceTerminal::Refresh() {
     }
   }
 
-  heartbeat = heartRateController.HeartRate();
-  heartbeatRunning = heartRateController.State() != Controllers::HeartRateController::States::Stopped;
-  if (heartbeat.IsUpdated() || heartbeatRunning.IsUpdated()) {
-    if (heartbeatRunning.Get()) {
-      lv_label_set_text_fmt(heartbeatValue, "[L_HR]#ee3311 %d bpm#", heartbeat.Get());
-    } else {
-      lv_label_set_text_static(heartbeatValue, "[L_HR]#ee3311 ---#");
-    }
-  }
+  //heartbeat = heartRateController.HeartRate();
+  //heartbeatRunning = heartRateController.State() != Controllers::HeartRateController::States::Stopped;
+  //if (heartbeat.IsUpdated() || heartbeatRunning.IsUpdated()) {
+  //  if (heartbeatRunning.Get()) {
+  //    lv_label_set_text_fmt(heartbeatValue, "[L_HR]#ee3311 %d bpm#", heartbeat.Get());
+  //  } else {
+  //    lv_label_set_text_static(heartbeatValue, "[L_HR]#ee3311 ---#");
+  //  }
+  //}
+  lv_label_set_text_static(heartbeatValue, " ");
 
-  stepCount = motionController.NbSteps();
+  //stepCount = motionController.NbSteps();
   motionSensorOk = motionController.IsSensorOk();
-  if (stepCount.IsUpdated() || motionSensorOk.IsUpdated()) {
-    lv_label_set_text_fmt(stepValue, "[STEP]#ee3377 %lu steps#", stepCount.Get());
-  }
+  //if (stepCount.IsUpdated() || motionSensorOk.IsUpdated()) {
+  //  lv_label_set_text_fmt(stepValue, "[STEP]#ee3377 %lu steps#", stepCount.Get());
+  //}
+  lv_label_set_text_static(stepValue, "[RMOS]#ee3311 2022-12");
 }
